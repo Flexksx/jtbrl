@@ -1,0 +1,20 @@
+set working-directory := "../.."
+
+[private]
+default:
+    just --list --justfile {{source_file()}}
+
+# Format Nix files
+nix:
+    alejandra .
+
+# Format Markdown files
+markdown:
+    rumdl check --fix .
+
+# Run every formatter
+all: nix markdown
+
+# --- Add once the Gradle project lands, e.g.: ---
+# java:
+#     ./gradlew spotlessApply

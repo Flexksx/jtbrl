@@ -1,0 +1,20 @@
+pre-commit:
+  commands:
+    format-nix:
+      glob: "**/*.nix"
+      run: alejandra {staged_files}
+      stage_fixed: true
+    lint-markdown:
+      glob: "**/*.md"
+      run: rumdl check --fix {staged_files}
+      stage_fixed: true
+
+    # --- Uncomment once the Gradle project lands. Call the same tools ---
+    # --- the `just format`/`just lint` recipes call, never a divergent command. ---
+    # format-java:
+    #   glob: "**/*.java"
+    #   run: ./gradlew spotlessApply
+    #   stage_fixed: true
+    # lint-java:
+    #   glob: "**/*.java"
+    #   run: ./gradlew spotlessCheck
